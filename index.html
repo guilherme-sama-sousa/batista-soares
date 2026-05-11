@@ -306,6 +306,8 @@
     }
     .header-cta-mobile { display: none; }
     @media (max-width: 720px) {
+      .header { padding: 12px 0; }
+      .header.scrolled { padding: 10px 0; }
       .header-cta-desktop { display: none; }
       .header-cta-mobile {
         display: inline-flex;
@@ -313,28 +315,34 @@
         gap: 6px;
         background: var(--whatsapp);
         color: var(--white);
-        padding: 10px 16px;
+        padding: 8px 14px;
         border-radius: 999px;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         font-weight: 600;
       }
-      .logo-text { font-size: 1rem; }
+      .logo-text { font-size: 0.95rem; }
+      .logo-text small { font-size: 0.65rem; }
+      .logo-component[data-size="sm"] img { max-height: 36px; }
     }
 
     /* ========== HERO ========== */
     .hero {
       position: relative;
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 140px 0 80px;
+      padding: 110px 0 60px;
       overflow: hidden;
       background:
         linear-gradient(135deg, rgba(21,42,102,0.92) 0%, rgba(30,58,138,0.85) 50%, rgba(43,79,181,0.78) 100%),
         radial-gradient(ellipse at top right, #2B4FB5 0%, #1E3A8A 40%, #0F1F4D 100%);
       color: var(--white);
       isolation: isolate;
+    }
+    @media (min-width: 768px) {
+      .hero { padding: 140px 0 80px; }
     }
     .hero::before {
       content: '';
@@ -458,6 +466,60 @@
       height: 28px;
       background: rgba(255,255,255,0.4);
       margin: 10px auto 0;
+    }
+
+    /* === Hero compactado em mobile - garantir CTA visível na primeira dobra === */
+    @media (max-width: 767px) {
+      .hero-logo-wrap { margin-bottom: 18px; }
+      .logo-component[data-size="lg"] img { max-height: 60px; }
+      .hero-eyebrow {
+        padding: 8px 16px;
+        font-size: 0.7rem;
+        margin-bottom: 18px;
+        letter-spacing: 0.08em;
+      }
+      .hero h1 {
+        font-size: 2rem;
+        line-height: 1.1;
+        margin-bottom: 14px;
+      }
+      .hero h1 br { display: none; }
+      .hero-subhead {
+        font-size: 1.05rem;
+        margin-bottom: 14px;
+      }
+      .hero-desc {
+        font-size: 0.92rem;
+        line-height: 1.55;
+        margin-bottom: 24px;
+      }
+      .hero-ctas { margin-bottom: 28px; }
+      .hero-ctas .btn-large {
+        padding: 16px 28px;
+        font-size: 0.95rem;
+        width: 100%;
+      }
+      .hero-trust {
+        gap: 8px;
+        padding-top: 18px;
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-trust-item {
+        font-size: 0.78rem;
+        gap: 6px;
+      }
+      .hero-trust-item svg { width: 14px; height: 14px; }
+      .hero-scroll { display: none; }
+    }
+
+    /* === Hero ainda mais compactado em telas muito pequenas (iPhone SE) === */
+    @media (max-width: 380px) {
+      .hero { padding: 95px 0 50px; }
+      .logo-component[data-size="lg"] img { max-height: 52px; }
+      .hero h1 { font-size: 1.75rem; }
+      .hero-subhead { font-size: 1rem; }
+      .hero-desc { font-size: 0.88rem; }
     }
 
     @keyframes heroFadeIn {
