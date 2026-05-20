@@ -12,6 +12,25 @@
   gtag('js', new Date());
   gtag('config', 'AW-18155530923');
 </script>
+  <!-- Event snippet for Contato conversion page
+In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
+<script>
+function gtag_report_conversion(url) {
+  var callback = function () {
+    if (typeof(url) != 'undefined') {
+      window.location = url;
+    }
+  };
+  gtag('event', 'conversion', {
+      'send_to': 'AW-18155530923/nc2NCKjXjrAcEKvVndFD',
+      'value': 1.0,
+      'currency': 'BRL',
+      'event_callback': callback
+  });
+  return false;
+}
+</script>
+
   <!-- SEO -->
   <title>Batista & Soares Advocacia | BPC-LOAS — Direito do PCD e Idoso</title>
   <meta name="description" content="Você é PCD ou idoso(a) acima de 65 anos? Pode ter direito a um salário-mínimo por mês do BPC-LOAS. Não aceite indeferimento do INSS sem consultar um especialista. Piauí.">
