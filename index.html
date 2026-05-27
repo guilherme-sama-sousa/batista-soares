@@ -784,7 +784,7 @@ function gtag_report_conversion(url) {
     .step h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; color: var(--primary); margin-bottom: 12px; }
     .step p { font-size: 0.95rem; color: var(--gray-600); line-height: 1.6; }
 
-    .form-section {
+    .contato-section {
       background:
         linear-gradient(135deg, rgba(21,42,102,0.95) 0%, rgba(30,58,138,0.92) 100%),
         radial-gradient(circle at top right, #2B4FB5, #1E3A8A 60%);
@@ -792,85 +792,95 @@ function gtag_report_conversion(url) {
       position: relative;
       overflow: hidden;
     }
-    .form-section::before {
+    .contato-section::before {
       content: '';
       position: absolute;
       inset: 0;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0 L30 60 M0 30 L60 30' stroke='%23ffffff' stroke-opacity='0.04' stroke-width='1'/%3E%3C/svg%3E");
       pointer-events: none;
     }
-    .form-wrapper { max-width: 720px; margin: 0 auto; position: relative; }
-    .form-header { text-align: center; margin-bottom: 48px; }
-    .form-header .eyebrow { color: var(--secondary); }
-    .form-card {
+    .contato-header { text-align: center; margin-bottom: 56px; position: relative; }
+    .contato-header .eyebrow { color: var(--secondary); }
+
+    .contato-wrapper {
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .contato-card {
       background: var(--white);
-      padding: clamp(32px, 5vw, 56px);
+      padding: clamp(28px, 4vw, 44px);
       border-radius: 24px;
       box-shadow: var(--shadow-xl);
       color: var(--gray-800);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
-    .form-card h3 {
+    .contato-card h3 {
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+      font-size: clamp(1.35rem, 2.4vw, 1.7rem);
       color: var(--primary);
-      margin-bottom: 8px;
-      text-align: center;
+      margin-bottom: 10px;
+      line-height: 1.25;
     }
-    .form-card-subtitle { text-align: center; color: var(--gray-600); margin-bottom: 32px; font-size: 0.95rem; }
-    .form-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
-    @media (min-width: 640px) {
-      .form-grid { grid-template-columns: 1fr 1fr; }
-      .form-grid .full { grid-column: 1 / -1; }
-    }
-    .field { display: flex; flex-direction: column; gap: 8px; }
-    .field label { font-size: 0.85rem; font-weight: 600; color: var(--gray-800); letter-spacing: 0.01em; }
-    .field label .required { color: var(--secondary); }
-    .field input, .field select, .field textarea {
-      width: 100%;
-      padding: 14px 16px;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      color: var(--gray-800);
-      background: var(--gray-50);
-      border: 2px solid transparent;
-      border-radius: 12px;
-      transition: border-color var(--t-fast), background var(--t-fast);
-      outline: none;
-    }
-    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--secondary); background: var(--white); }
-    .field input.error, .field select.error { border-color: #DC2626; background: #FEF2F2; }
-    .field textarea { resize: vertical; min-height: 90px; }
-    .field-error { font-size: 0.78rem; color: #DC2626; display: none; }
-    .field-error.show { display: block; }
-    .form-submit { margin-top: 28px; }
-    .form-anchor {
+    .contato-card-text { color: var(--gray-600); margin-bottom: 24px; font-size: 0.95rem; line-height: 1.65; }
+
+    .contato-divider {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 20px;
-      font-size: 0.85rem;
-      color: var(--gray-600);
-      text-align: center;
-      line-height: 1.5;
-      flex-wrap: wrap;
+      gap: 14px;
+      margin: 28px 0 22px;
     }
-    .form-anchor svg { color: var(--success); flex-shrink: 0; }
+    .contato-divider::before,
+    .contato-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gray-200);
+    }
+    .contato-divider span {
+      font-size: 0.78rem;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 500;
+    }
 
-    .form-success {
-      display: none;
-      padding: 32px;
-      text-align: center;
-      background: #ECFDF5;
-      border: 2px solid var(--success);
-      border-radius: 16px;
-      margin-top: 20px;
+    .contato-list { list-style: none; display: flex; flex-direction: column; gap: 18px; }
+    .contato-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
     }
-    .form-success.show { display: block; animation: fadeUp 0.4s ease; }
-    .form-success svg { width: 56px; height: 56px; color: var(--success); margin: 0 auto 16px; display: block; }
-    .form-success h4 { font-family: var(--font-display); font-size: 1.4rem; color: var(--primary); margin-bottom: 8px; }
-    .form-success p { color: var(--gray-600); font-size: 0.95rem; }
+    .contato-icon {
+      flex-shrink: 0;
+      width: 42px; height: 42px;
+      background: rgba(255,107,53,0.1);
+      color: var(--secondary);
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+    }
+    .contato-info-text { display: flex; flex-direction: column; gap: 2px; line-height: 1.5; }
+    .contato-info-text strong {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+    }
+    .contato-info-text a,
+    .contato-info-text span {
+      font-size: 0.95rem;
+      color: var(--gray-800);
+      font-weight: 500;
+      transition: color var(--t-fast);
+      word-break: break-word;
+    }
+    .contato-info-text a:hover { color: var(--secondary); }
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -1330,64 +1340,56 @@ function gtag_report_conversion(url) {
     </div>
   </section>
 
-  <!-- =========================== BLOCO 8 - FORMULÁRIO =========================== -->
-  <section class="section form-section" id="contato">
+  <!-- =========================== BLOCO 8 - CONTATO + MAPA =========================== -->
+  <section class="section contato-section" id="contato">
     <div class="container">
-      <div class="form-wrapper">
-        <div class="form-header">
-          <span class="eyebrow">Fale com a gente</span>
-          <h2 class="section-title light reveal">Vamos conversar sobre o seu caso</h2>
-          <p class="section-subtitle light center reveal reveal-delay-1">Preencha o formulário abaixo e nossa equipe entra em contato pelo WhatsApp em minutos.</p>
-        </div>
+      <div class="contato-header">
+        <span class="eyebrow">Fale com a gente</span>
+        <h2 class="section-title light reveal">Vamos conversar sobre o seu caso</h2>
+        <p class="section-subtitle light center reveal reveal-delay-1">Atendimento via WhatsApp, telefone ou presencial no nosso escritório em Teresina.</p>
+      </div>
 
-        <div class="form-card reveal reveal-delay-2">
-          <h3>Fale com nosso escritório</h3>
-          <p class="form-card-subtitle">Batista &amp; Soares Advocacia · OAB/PI · Resposta via WhatsApp</p>
+      <div class="contato-wrapper">
+        <div class="contato-card reveal reveal-delay-2">
+          <h3>Falar com o escritório agora</h3>
+          <p class="contato-card-text">Nossa equipe responde em minutos pelo WhatsApp. Consultoria inicial sem custo e sem compromisso.</p>
 
-          <form id="leadForm" novalidate>
-            <div class="form-grid">
-              <div class="field full">
-                <label for="nome">Nome Completo <span class="required">*</span></label>
-                <input type="text" id="nome" name="nome" required autocomplete="name" placeholder="Como devemos te chamar?">
-                <span class="field-error" data-for="nome">Por favor, preencha seu nome.</span>
+          <a href="https://wa.me/5586994708696?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20o%20escrit%C3%B3rio%20sobre%20BPC-LOAS" class="btn btn-whatsapp btn-large btn-full" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.477 2 2 6.477 2 12c0 1.815.487 3.514 1.335 4.973L2 22l5.18-1.36A9.962 9.962 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
+            Falar no WhatsApp agora
+          </a>
+
+          <div class="contato-divider"><span>ou pelos canais abaixo</span></div>
+
+          <ul class="contato-list">
+            <li>
+              <div class="contato-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>
               </div>
-
-              <div class="field full">
-                <label for="telefone">WhatsApp <span class="required">*</span></label>
-                <input type="tel" id="telefone" name="telefone" required autocomplete="tel" placeholder="(00) 00000-0000" maxlength="15">
-                <span class="field-error" data-for="telefone">Informe um WhatsApp válido.</span>
+              <div class="contato-info-text">
+                <strong>Telefone</strong>
+                <a href="tel:+5586994708696">(86) 99470-8696</a>
               </div>
-
-              <div class="field full">
-                <label for="situacao">Sua Situação <span class="required">*</span></label>
-                <select id="situacao" name="situacao" required>
-                  <option value="">Selecione uma opção</option>
-                  <option value="pcd">Tenho deficiência (qualquer idade)</option>
-                  <option value="idoso">Tenho 65 anos ou mais</option>
-                  <option value="indeferido">Já tive o BPC indeferido administrativamente</option>
-                  <option value="cessado">Tive o BPC suspenso ou cessado</option>
-                  <option value="outro">Outra situação / não tenho certeza</option>
-                </select>
-                <span class="field-error" data-for="situacao">Selecione sua situação.</span>
+            </li>
+            <li>
+              <div class="contato-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zM22 6l-10 7L2 6"/></svg>
               </div>
-            </div>
-
-            <button type="submit" class="btn btn-whatsapp btn-large btn-full form-submit">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.477 2 2 6.477 2 12c0 1.815.487 3.514 1.335 4.973L2 22l5.18-1.36A9.962 9.962 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
-              Falar com nosso escritório no WhatsApp
-            </button>
-
-            <p class="form-anchor">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Consultoria inicial sem custo · Sem compromisso · Nossa equipe responde via WhatsApp em minutos
-            </p>
-          </form>
-
-          <div class="form-success" id="formSuccess" role="status" aria-live="polite">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 11.08V12a10 10 0 11-5.93-9.14M22 4L12 14.01l-3-3"/></svg>
-            <h4>Solicitação recebida!</h4>
-            <p>Você será encaminhado(a) ao WhatsApp do escritório Batista &amp; Soares Advocacia em instantes para conversar com nossa equipe.</p>
-          </div>
+              <div class="contato-info-text">
+                <strong>E-mail</strong>
+                <a href="mailto:batista.soaresadvocacia@gmail.com">batista.soaresadvocacia@gmail.com</a>
+              </div>
+            </li>
+            <li>
+              <div class="contato-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="contato-info-text">
+                <strong>Endereço</strong>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=R.%20Adolfo%20Bas%C3%ADlio%2C%208106%20-%20Mocambinho%2C%20Teresina%20-%20PI%2C%2064010-490" target="_blank" rel="noopener">R. Adolfo Basílio, 8106 — Mocambinho<br>Teresina — PI, CEP 64.010-490</a>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -1526,78 +1528,6 @@ function gtag_report_conversion(url) {
       });
     }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
     revealEls.forEach(el => io.observe(el));
-
-    // ========== Máscara telefone ==========
-    const telInput = document.getElementById('telefone');
-    telInput.addEventListener('input', (e) => {
-      let v = e.target.value.replace(/\D/g, '').slice(0, 11);
-      if (v.length > 10) {
-        v = v.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, '($1) $2-$3');
-      } else if (v.length > 6) {
-        v = v.replace(/^(\d{2})(\d{4})(\d{0,4}).*/, '($1) $2-$3');
-      } else if (v.length > 2) {
-        v = v.replace(/^(\d{2})(\d{0,5}).*/, '($1) $2');
-      } else if (v.length > 0) {
-        v = v.replace(/^(\d{0,2}).*/, '($1');
-      }
-      e.target.value = v;
-    });
-
-    // ========== Validação e envio ==========
-    const form = document.getElementById('leadForm');
-    const success = document.getElementById('formSuccess');
-
-    function showError(field, show) {
-      const errEl = document.querySelector(`.field-error[data-for="${field.id}"]`);
-      if (show) { field.classList.add('error'); if (errEl) errEl.classList.add('show'); }
-      else { field.classList.remove('error'); if (errEl) errEl.classList.remove('show'); }
-    }
-
-    function validateNome(el) { const ok = el.value.trim().length >= 3; showError(el, !ok); return ok; }
-    function validateTelefone(el) { const ok = el.value.replace(/\D/g, '').length >= 10; showError(el, !ok); return ok; }
-    function validateSituacao(el) { const ok = !!el.value; showError(el, !ok); return ok; }
-
-    const validators = { nome: validateNome, telefone: validateTelefone, situacao: validateSituacao };
-    Object.entries(validators).forEach(([id, fn]) => {
-      const el = document.getElementById(id);
-      el.addEventListener('blur', () => { if (el.value.trim() !== '') fn(el); });
-      el.addEventListener('input', () => showError(el, false));
-      el.addEventListener('change', () => showError(el, false));
-    });
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const nome = document.getElementById('nome');
-      const telefone = document.getElementById('telefone');
-      const situacao = document.getElementById('situacao');
-
-      const valid = [validateNome(nome), validateTelefone(telefone), validateSituacao(situacao)].every(Boolean);
-      if (!valid) {
-        const firstError = document.querySelector('.field input.error, .field select.error');
-        if (firstError) firstError.focus();
-        return;
-      }
-
-      const situacaoLabels = {
-        'pcd': 'Pessoa com deficiência',
-        'idoso': 'Idoso(a) 65+ anos',
-        'indeferido': 'BPC indeferido administrativamente',
-        'cessado': 'BPC suspenso/cessado',
-        'outro': 'Outra situação'
-      };
-
-      const waText = `*Nova solicitação - BPC-LOAS*%0A%0A` +
-                     `*Nome:* ${encodeURIComponent(nome.value.trim())}%0A` +
-                     `*WhatsApp:* ${encodeURIComponent(telefone.value)}%0A` +
-                     `*Situação:* ${encodeURIComponent(situacaoLabels[situacao.value])}`;
-
-      form.style.display = 'none';
-      success.classList.add('show');
-
-      const waUrl = `https://wa.me/5586994708696?text=${waText}`;
-      setTimeout(() => { window.open(waUrl, '_blank', 'noopener'); }, 800);
-      setTimeout(() => { form.reset(); form.style.display = ''; success.classList.remove('show'); }, 5000);
-    });
 
     // ========== Smooth scroll ==========
     document.querySelectorAll('a[href^="#"]').forEach(a => {
