@@ -4,31 +4,48 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#1E3A8A">
-<!-- Google Ads Pixel -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18155530923"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'AW-18155530923');
-</script>
+
+  <!-- ============================================================
+       GOOGLE CONSENT MODE v2 — define estado PADRÃO como "negado"
+       ANTES de qualquer tag carregar. Exigência do Google Ads (2026)
+       + LGPD. O pixel só dispara depois que o usuário aceitar.
+       ============================================================ -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'wait_for_update': 500
+    });
+  </script>
+
+  <!-- Google Ads Pixel -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18155530923"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'AW-18155530923');
+  </script>
+
   <!-- Event snippet for Contato conversion page -->
-<script>
-function gtag_report_conversion(url) {
-  var callback = function () {
-    if (typeof(url) != 'undefined') {
-      window.location = url;
-    }
-  };
-  gtag('event', 'conversion', {
-      'send_to': 'AW-18155530923/nc2NCKjXjrAcEKvVndFD',
-      'value': 1.0,
-      'currency': 'BRL',
-      'event_callback': callback
-  });
-  return false;
-}
-</script>
+  <script>
+  function gtag_report_conversion(url) {
+    var callback = function () {
+      if (typeof(url) != 'undefined') {
+        window.location = url;
+      }
+    };
+    gtag('event', 'conversion', {
+        'send_to': 'AW-18155530923/nc2NCKjXjrAcEKvVndFD',
+        'value': 1.0,
+        'currency': 'BRL',
+        'event_callback': callback
+    });
+    return false;
+  }
+  </script>
 
   <!-- SEO -->
   <title>Batista & Soares Advocacia | Direito Previdenciário e Assistencial — Piauí</title>
@@ -224,6 +241,21 @@ function gtag_report_conversion(url) {
     .logo-component[data-size="sm"] img { max-height: 44px; }
     .logo-component[data-size="md"] img { max-height: 56px; }
     .logo-component[data-size="lg"] img { max-height: 88px; }
+
+    /* ========== FAIXA DE AVISO GOV NO TOPO (NÃO-VINCULAÇÃO) ========== */
+    .gov-topbar {
+      background: #7A2E12;
+      color: #fff;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      text-align: center;
+      padding: 9px 16px;
+      letter-spacing: 0.01em;
+      position: relative;
+      z-index: 101;
+    }
+    .gov-topbar strong { color: #FFD9C7; font-weight: 700; }
+    @media (max-width: 480px) { .gov-topbar { font-size: 0.72rem; padding: 8px 12px; } }
 
     .header {
       position: fixed;
@@ -1020,6 +1052,45 @@ function gtag_report_conversion(url) {
       50% { box-shadow: 0 12px 32px rgba(37,211,102,0.45), 0 0 0 18px rgba(37,211,102,0); }
     }
 
+    /* ========== BANNER DE CONSENTIMENTO DE COOKIES (LGPD + GOOGLE) ========== */
+    .cookie-banner {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 9999;
+      background: #14213D;
+      color: rgba(255,255,255,0.9);
+      padding: 20px 24px;
+      box-shadow: 0 -8px 30px rgba(0,0,0,0.35);
+      display: none;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .cookie-banner.show { display: block; transform: translateY(0); }
+    .cookie-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+    @media (min-width: 900px) { .cookie-inner { flex-direction: row; justify-content: space-between; gap: 28px; } }
+    .cookie-text { font-size: 0.86rem; line-height: 1.6; color: rgba(255,255,255,0.85); }
+    .cookie-text a { color: var(--secondary-light); text-decoration: underline; }
+    .cookie-actions { display: flex; gap: 12px; flex-shrink: 0; flex-wrap: wrap; justify-content: center; }
+    .cookie-btn {
+      padding: 12px 26px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all var(--t-fast);
+      white-space: nowrap;
+    }
+    .cookie-btn-accept { background: var(--secondary); color: #fff; }
+    .cookie-btn-accept:hover { background: var(--secondary-dark); }
+    .cookie-btn-reject { background: transparent; color: rgba(255,255,255,0.8); border: 1.5px solid rgba(255,255,255,0.3); }
+    .cookie-btn-reject:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); }
+
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-delay-1 { transition-delay: 0.1s; }
@@ -1034,6 +1105,11 @@ function gtag_report_conversion(url) {
   </style>
 </head>
 <body>
+
+  <!-- =========================== FAIXA DE AVISO GOV (TOPO) =========================== -->
+  <div class="gov-topbar">
+    <strong>Aviso:</strong> Site privado do escritório Batista &amp; Soares Advocacia. Sem qualquer vínculo com o INSS, Meu INSS, gov.br ou órgãos públicos. Não realizamos cadastros nem emitimos benefícios.
+  </div>
 
   <!-- =========================== HEADER FIXO =========================== -->
   <header class="header" id="header">
@@ -1354,7 +1430,7 @@ function gtag_report_conversion(url) {
           <h3>Falar com o escritório agora</h3>
           <p class="contato-card-text">Nossa equipe responde em minutos pelo WhatsApp. Consultoria inicial sem custo e sem compromisso.</p>
 
-          <a href="https://wa.me/5586994708696?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20o%20escrit%C3%B3rio%20sobre%20BPC-LOAS" class="btn btn-whatsapp btn-large btn-full" target="_blank" rel="noopener">
+          <a href="https://wa.me/5586994708696?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20o%20escrit%C3%B3rio%20sobre%20BPC-LOAS" class="btn btn-whatsapp btn-large btn-full" target="_blank" rel="noopener" onclick="return gtag_report_conversion('https://wa.me/5586994708696?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20o%20escrit%C3%B3rio%20sobre%20BPC-LOAS');">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.477 2 2 6.477 2 12c0 1.815.487 3.514 1.335 4.973L2 22l5.18-1.36A9.962 9.962 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
             Falar no WhatsApp agora
           </a>
@@ -1452,7 +1528,7 @@ function gtag_report_conversion(url) {
       <!-- ========== DISCLAIMER DE NÃO-VINCULAÇÃO GOVERNAMENTAL ========== -->
       <div class="disclaimer-gov">
         <span class="disclaimer-title">⚠ Aviso Legal Importante</span>
-        Este site é exclusivamente institucional do escritório <em>Batista &amp; Soares Advocacia</em>. <em>Não possuímos qualquer vínculo</em> com o INSS, com o Governo Federal, com o portal Meu INSS, com o gov.br ou com qualquer órgão ou autarquia pública. Não realizamos cadastros oficiais, não emitimos benefícios e não temos acesso a sistemas governamentais. Oferecemos exclusivamente serviços de <em>consultoria e representação jurídica</em> em direito previdenciário e assistencial, no exercício regular da advocacia.
+        Este site é exclusivamente institucional do escritório <em>Batista &amp; Soares Advocacia</em>. <em>Não possuímos qualquer vínculo</em> com o INSS, com o Governo Federal, com o portal Meu INSS, com o gov.br ou com qualquer órgão ou autarquia pública. Não realizamos cadastros oficiais, não emitimos benefícios e não temos acesso a sistemas governamentais. Oferecemos exclusivamente serviços de <em>consultoria e representação jurídica</em> em direito previdenciário e assistencial, no exercício regular da advocacia. Este conteúdo tem caráter meramente informativo e não constitui oferta de resultado nem estabelece, por si só, relação advogado-cliente, a qual depende de contratação formal específica.
       </div>
 
       <!-- ========== IDENTIFICAÇÃO COMPLETA DO ESCRITÓRIO ========== -->
@@ -1466,11 +1542,12 @@ function gtag_report_conversion(url) {
           <a href="/sobre">Quem Somos</a>
           <a href="/politica-de-privacidade">Política de Privacidade</a>
           <a href="/termos-de-uso">Termos de Uso</a>
+          <a href="#" id="cookie-reopen">Preferências de Cookies</a>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p>© 2026 Batista &amp; Soares Advocacia. Todos os direitos reservados.</p>
+        <p>© 2026 Batista &amp; Soares Advocacia — CNPJ 66.490.068/0001-04. Todos os direitos reservados.</p>
         <p>Site institucional em conformidade com o Provimento 205/2021 da OAB.</p>
       </div>
     </div>
@@ -1481,6 +1558,19 @@ function gtag_report_conversion(url) {
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12 2C6.477 2 2 6.477 2 12c0 1.815.487 3.514 1.335 4.973L2 22l5.18-1.36A9.962 9.962 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z"/></svg>
     <span class="wa-float-text">Falar com escritório</span>
   </a>
+
+  <!-- =========================== BANNER DE CONSENTIMENTO DE COOKIES =========================== -->
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+    <div class="cookie-inner">
+      <p class="cookie-text">
+        Utilizamos cookies e tecnologias de medição (Google Ads) para entender o desempenho dos nossos anúncios e melhorar sua experiência. Você pode aceitar ou recusar. Saiba mais na nossa <a href="/politica-de-privacidade">Política de Privacidade</a>.
+      </p>
+      <div class="cookie-actions">
+        <button type="button" class="cookie-btn cookie-btn-reject" id="cookieReject">Recusar</button>
+        <button type="button" class="cookie-btn cookie-btn-accept" id="cookieAccept">Aceitar cookies</button>
+      </div>
+    </div>
+  </div>
 
   <script>
     /* =====================================================================
@@ -1506,9 +1596,61 @@ function gtag_report_conversion(url) {
     renderLogos();
 
     /* =====================================================================
-       FOTOS DOS SÓCIOS — já configuradas como <picture> + WebP/JPG em /img/
-       Arquivos: /public/img/joria.webp · joria.jpg · lucas.webp · lucas.jpg
+       CONSENTIMENTO DE COOKIES (LGPD + Google Consent Mode v2)
+       O pixel do Google Ads só é liberado após "Aceitar".
        ===================================================================== */
+    (function () {
+      const KEY = 'bs_cookie_consent';
+      const banner = document.getElementById('cookieBanner');
+      const btnAccept = document.getElementById('cookieAccept');
+      const btnReject = document.getElementById('cookieReject');
+      const reopen = document.getElementById('cookie-reopen');
+
+      function grantConsent() {
+        gtag('consent', 'update', {
+          'ad_storage': 'granted',
+          'ad_user_data': 'granted',
+          'ad_personalization': 'granted',
+          'analytics_storage': 'granted'
+        });
+      }
+      function denyConsent() {
+        gtag('consent', 'update', {
+          'ad_storage': 'denied',
+          'ad_user_data': 'denied',
+          'ad_personalization': 'denied',
+          'analytics_storage': 'denied'
+        });
+      }
+      function showBanner() { banner.classList.add('show'); }
+      function hideBanner() { banner.classList.remove('show'); }
+
+      let saved = null;
+      try { saved = localStorage.getItem(KEY); } catch (e) {}
+
+      if (saved === 'granted') {
+        grantConsent();
+      } else if (saved === 'denied') {
+        denyConsent();
+      } else {
+        showBanner();
+      }
+
+      btnAccept && btnAccept.addEventListener('click', function () {
+        try { localStorage.setItem(KEY, 'granted'); } catch (e) {}
+        grantConsent();
+        hideBanner();
+      });
+      btnReject && btnReject.addEventListener('click', function () {
+        try { localStorage.setItem(KEY, 'denied'); } catch (e) {}
+        denyConsent();
+        hideBanner();
+      });
+      reopen && reopen.addEventListener('click', function (e) {
+        e.preventDefault();
+        showBanner();
+      });
+    })();
 
     // ========== Header scroll ==========
     const header = document.getElementById('header');
@@ -1532,7 +1674,9 @@ function gtag_report_conversion(url) {
     // ========== Smooth scroll ==========
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', (e) => {
-        const target = document.querySelector(a.getAttribute('href'));
+        const href = a.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
         if (target) {
           e.preventDefault();
           const offset = 80;
